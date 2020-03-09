@@ -10,6 +10,7 @@ class GetLeagues extends React.Component {
       isLoaded: false,
       items: [],
       teams: null,
+      teamsComponentCalled: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -26,7 +27,6 @@ class GetLeagues extends React.Component {
         this.setState({
           isLoaded: true,
           items: data.competitions,
-          //teams: null,
         })
       })
   }
@@ -43,14 +43,14 @@ class GetLeagues extends React.Component {
     fetch(url, options)
       .then(response => response.json())
       .then(data => {
-        this.setState({ teams: data });
+        this.setState({ teams: data, teamsComponentCalled: true });
       });
   }
 
   render() {
     const items = this.state.items;
     return (
-      <section className="standings-grid">
+      <nav className="standings-grid">
         <ul>
         {items.map(item => (
           <li key={item.id}>
@@ -62,8 +62,8 @@ class GetLeagues extends React.Component {
         )}
       </ul>
         {console.log('before calling GetTeams', this.state.teams)}
-        <GetTeams teams={this.state.teams} />
-      </section>)
+        <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled} />
+      </nav>)
   }
 
 }
@@ -71,29 +71,55 @@ class GetLeagues extends React.Component {
 class GetTeams extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {nodataClass: 'noData'};
+  }
+
+  componentDidMount() {
+    if (this.props.called && (!this.props.teams || !this.props.teams.standings.length > 0)) {
+      this.setState({nodataClass: ''});
+    }
   }
 
   render() {
     console.log('render GetTeams');
-    if (this.props.teams) {
+    if (this.props.teams && this.props.teams.standings.length > 0) {
       const teamStandings = this.props.teams.standings[0].table;
+
       console.log('this.props.teams in GetTeams', this.props.teams);
-      return (<table className="standings">
+      if (!teamStandings) {
+        this.setState({nodataClass: ''});
+        return (<div className={this.state.nodataClass}>No data</div>);
+      }
+      
+      return (
+      <table className="standings">
         <thead>
           <tr>
             <th>#</th>
             <th>team</th>
+            <th>points</th>
+            <th>games played</th>
+            <th>W</th>
+            <th>T</th>
+            <th>L</th>
           </tr>
         </thead>
         <tbody>
           {teamStandings.map((team) => {
-            return (<tr><td>{team.position}</td><td>{team.team.name}</td></tr>);
+            return (<tr key={team.position}><td>{team.position}</td>
+              <td>{team.team.name}</td>
+              <td>{team.points}</td>
+              <td>{team.playedGames}</td>
+              <td>{team.won}</td>
+              <td>{team.draw}</td>
+              <td>{team.lost}</td>
+            </tr>);
           })}
         </tbody>
       </table>);
+    } else {
+    return (<div className={this.state.nodataClass}>No data</div>);
     }
-    console.log('this.props.teams in GetTeams', this.props.teams);
-    return (<div></div>);
   }
 }
 

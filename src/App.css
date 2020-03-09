@@ -6,3 +6,5 @@
 }
 
 .standings {text-align: left;}
+nav ul {list-style: none;}
+.noData {display: none;}
