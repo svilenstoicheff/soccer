@@ -52,15 +52,15 @@ class GetLeagues extends React.Component {
     return (
       <nav className="standings-grid">
         <ul>
-        {items.map(item => (
-          <li key={item.id}>
-            <a href="#" id={item.id} onClick={this.handleClick}>
-              {item.area.name} - {item.name}
-            </a>
-          </li>
-        )
-        )}
-      </ul>
+          {items.map(item => (
+            <li key={item.id}>
+              <a href="#" id={item.id} onClick={this.handleClick}>
+                {item.area.name} - {item.name}
+              </a>
+            </li>
+          )
+          )}
+        </ul>
         {console.log('before calling GetTeams', this.state.teams)}
         <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled} />
       </nav>)
@@ -71,13 +71,25 @@ class GetLeagues extends React.Component {
 class GetTeams extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {nodataClass: 'noData'};
+    this.state = {
+      nodataClass: 'noData',
+      teamId: '',
+      teamInfo: null,
+    };
+    this.handleTeamClick = this.handleTeamClick.bind(this);
   }
 
   componentDidMount() {
     if (this.props.called && (!this.props.teams || !this.props.teams.standings.length > 0)) {
-      this.setState({nodataClass: ''});
+      this.setState({ nodataClass: '' });
     }
+  }
+
+  handleTeamClick(e) {
+    e.preventDefault();
+    this.setState({
+      teamId: e.target.getAttribute('teamid'),
+    });
   }
 
   render() {
@@ -87,46 +99,64 @@ class GetTeams extends React.Component {
 
       console.log('this.props.teams in GetTeams', this.props.teams);
       if (!teamStandings) {
-        this.setState({nodataClass: ''});
+        this.setState({ nodataClass: '' });
         return (<div className={this.state.nodataClass}>No data</div>);
       }
-      
+
       return (
-      <table className="standings">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>team</th>
-            <th>points</th>
-            <th>games played</th>
-            <th>W</th>
-            <th>T</th>
-            <th>L</th>
-          </tr>
-        </thead>
-        <tbody>
-          {teamStandings.map((team) => {
-            return (<tr key={team.position}><td>{team.position}</td>
-              <td>{team.team.name}</td>
-              <td>{team.points}</td>
-              <td>{team.playedGames}</td>
-              <td>{team.won}</td>
-              <td>{team.draw}</td>
-              <td>{team.lost}</td>
-            </tr>);
-          })}
-        </tbody>
-      </table>);
+        <section>
+          <table className="standings">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>team</th>
+                <th>points</th>
+                <th>games played</th>
+                <th>W</th>
+                <th>T</th>
+                <th>L</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teamStandings.map((team) => {
+                return (<tr key={team.position}><td>{team.position}</td>
+                  <td><a href="#" onClick={this.handleTeamClick} teamid={team.team.id}>{team.team.name}</a></td>
+                  <td>{team.points}</td>
+                  <td>{team.playedGames}</td>
+                  <td>{team.won}</td>
+                  <td>{team.draw}</td>
+                  <td>{team.lost}</td>
+                </tr>);
+              })}
+            </tbody>
+          </table>
+          <GetTeamInfo teamId={this.state.teamId} />
+        </section>
+      );
     } else {
-    return (<div className={this.state.nodataClass}>No data</div>);
+      return (<div className={this.state.nodataClass}>No data</div>);
     }
   }
+}
+
+class GetTeamInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      teamInfo: null,
+    }
+  }
+
+  render() {
+  return (<div>team info here: {this.props.teamId}</div>);
+  }
+
 }
 
 function App() {
   return (
     <main>
-        <GetLeagues />
+      <GetLeagues />
     </main>
   );
 }
