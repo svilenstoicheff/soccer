@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import GetTeamInfo from './GetTeamInfo.js';
 
 class GetLeagues extends React.Component {
   constructor(props) {
@@ -50,22 +50,24 @@ class GetLeagues extends React.Component {
   render() {
     const items = this.state.items;
     return (
-      <nav className="standings-grid">
-        <ul>
-          {items.map(item => (
-            <li key={item.id}>
-              <a href="#" id={item.id} onClick={this.handleClick}>
-                {item.area.name} - {item.name}
-              </a>
-            </li>
-          )
-          )}
-        </ul>
-        {console.log('before calling GetTeams', this.state.teams)}
+      <section className="standings-grid">
+        <nav>
+          <ul>
+            {items.map(item => (
+              <li key={item.id}>
+                <a href="#" id={item.id} onClick={this.handleClick}>
+                  {item.area.name} - {item.name}
+                </a>
+              </li>
+            )
+            )}
+          </ul>
+          {console.log('before calling GetTeams', this.state.teams)}
+        </nav>
         <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled} />
-      </nav>)
+      </section>
+    )
   }
-
 }
 
 class GetTeams extends React.Component {
@@ -90,6 +92,16 @@ class GetTeams extends React.Component {
     this.setState({
       teamId: e.target.getAttribute('teamid'),
     });
+    const teamId = e.target.getAttribute('teamid');
+    const url = 'http://api.football-data.org/v2/teams/' + teamId;
+    let options = {
+      method: 'GET',
+      headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
+    };
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then((data) => this.setState({ teamInfo: data }));
   }
 
   render() {
@@ -130,27 +142,13 @@ class GetTeams extends React.Component {
               })}
             </tbody>
           </table>
-          <GetTeamInfo teamId={this.state.teamId} />
+          <GetTeamInfo teamId={this.state.teamId} teamInfo={this.state.teamInfo} />
         </section>
       );
     } else {
       return (<div className={this.state.nodataClass}>No data</div>);
     }
   }
-}
-
-class GetTeamInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      teamInfo: null,
-    }
-  }
-
-  render() {
-  return (<div>team info here: {this.props.teamId}</div>);
-  }
-
 }
 
 function App() {
