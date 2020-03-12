@@ -64,7 +64,7 @@ class GetLeagues extends React.Component {
           </ul>
           {console.log('before calling GetTeams', this.state.teams)}
         </nav>
-        <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled} />
+        <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled}  />
       </section>
     )
   }
@@ -110,6 +110,7 @@ class GetTeams extends React.Component {
     console.log('render GetTeams');
     if (this.props.teams && this.props.teams.standings.length > 0) {
       const teamStandings = this.props.teams.standings[0].table;
+      const competition = this.props.teams.competition;
 
       console.log('this.props.teams in GetTeams', this.props.teams);
       if (!teamStandings) {
@@ -120,6 +121,8 @@ class GetTeams extends React.Component {
       return (
         <section>
           <GetTeamInfo teamId={this.state.teamId} teamInfo={this.state.teamInfo} className="teamInfo" that={this} />
+
+      <h2>{competition.area.name +': '+competition.name}</h2>
           <table className="standings">
             <thead>
               <tr>

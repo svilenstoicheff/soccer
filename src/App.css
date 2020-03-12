@@ -1,7 +1,13 @@
-html, body, #root, main, section {
+html, body {
   height: 100%;
+}
+#root, main, section {height: 100%}
+
+#root, main {
   overflow-y: scroll;
 }
+
+
 main {background-color: #eee;}
 
 nav {
