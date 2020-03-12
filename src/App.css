@@ -31,7 +31,7 @@ nav a {
 .standings {text-align: left;}
 nav ul {list-style: none;}
 .noData {display: none;}
-.teamInfo + .standings {display: none;}
+.teamInfo ~ .standings, .teamInfo ~ h2 {display: none;}
 
 th, td {padding: .2em .4em;}
 
