@@ -7,7 +7,16 @@ class GetTeamInfo extends React.Component {
             teamId: this.props.teamId,
             //teamInfo: this.props.teamInfo,
         }
+        this.handleBack = this.handleBack.bind(this);
     }
+
+    handleBack(e) {
+        this.props.that.setState({
+            teamId: null, 
+            teamInfo: null,
+        });
+    }
+
     render() {
         const teamInfo = this.props.teamInfo;
         console.log('teamInfo', this.props.teamInfo);
@@ -15,7 +24,8 @@ class GetTeamInfo extends React.Component {
         const tableId = 'team' + this.props.teamId;
         if (teamInfo) {
             return (
-                <section>
+                <section className={this.props.className}>
+                    <a href="#" onClick={this.handleBack}>Back to standings</a>
                     <h2>{teamInfo.shortName}</h2>
                     <table id={tableId}>
                         <thead>

@@ -75,7 +75,7 @@ class GetTeams extends React.Component {
     super(props);
     this.state = {
       nodataClass: 'noData',
-      teamId: '',
+      teamId: null,
       teamInfo: null,
     };
     this.handleTeamClick = this.handleTeamClick.bind(this);
@@ -101,7 +101,9 @@ class GetTeams extends React.Component {
 
     fetch(url, options)
       .then(response => response.json())
-      .then((data) => this.setState({ teamInfo: data }));
+      .then((data) => {
+        this.setState({ teamInfo: data });
+    });
   }
 
   render() {
@@ -117,6 +119,7 @@ class GetTeams extends React.Component {
 
       return (
         <section>
+          <GetTeamInfo teamId={this.state.teamId} teamInfo={this.state.teamInfo} className="teamInfo" that={this} />
           <table className="standings">
             <thead>
               <tr>
@@ -142,7 +145,6 @@ class GetTeams extends React.Component {
               })}
             </tbody>
           </table>
-          <GetTeamInfo teamId={this.state.teamId} teamInfo={this.state.teamInfo} />
         </section>
       );
     } else {
