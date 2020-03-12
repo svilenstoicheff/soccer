@@ -5,11 +5,19 @@ class GetTeamInfo extends React.Component {
         super(props);
         this.state = {
             teamId: this.props.teamId,
-            //teamInfo: this.props.teamInfo,
+            teamInfo: this.props.teamInfo,
         }
         this.handleBack = this.handleBack.bind(this);
     }
 
+
+    componentWillMount() {
+        this.props.that.setState({
+            teamId: null, 
+            teamInfo: null,
+        });
+    }
+    
     handleBack(e) {
         this.props.that.setState({
             teamId: null, 

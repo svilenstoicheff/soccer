@@ -27,12 +27,14 @@ class GetLeagues extends React.Component {
         this.setState({
           isLoaded: true,
           items: data.competitions,
+          teams: null,
         })
       })
   }
 
   handleClick(e) {
     const competitionId = e.target.getAttribute('id');
+    this.setState({teams: null});
     console.log(e.target.getAttribute('id'));
     console.log('this', this);
     const options = {
@@ -81,9 +83,13 @@ class GetTeams extends React.Component {
     this.handleTeamClick = this.handleTeamClick.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({teamId: null, teamInfo: null});
+  }
+
   componentDidMount() {
     if (this.props.called && (!this.props.teams || !this.props.teams.standings.length > 0)) {
-      this.setState({ nodataClass: '' });
+      this.setState({ nodataClass: '', teamInfo: null });
     }
   }
 
