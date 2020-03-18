@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactModal from 'react-modal';
+import GetPlayer from './GetPlayer';
 
 class GetTeamInfo extends React.Component {
     constructor(props) {
@@ -6,8 +8,12 @@ class GetTeamInfo extends React.Component {
         this.state = {
             teamId: this.props.teamId,
             teamInfo: this.props.teamInfo,
+            player: null,
+            tooltipX: null,
+            tooltipY: null, 
         }
         this.handleBack = this.handleBack.bind(this);
+        this.handlePlayerClick = this.handlePlayerClick.bind(this);
     }
 
 
@@ -23,6 +29,24 @@ class GetTeamInfo extends React.Component {
             teamId: null, 
             teamInfo: null,
         });
+    }
+
+    handlePlayerClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({tooltipX: e.pageX, tooltipY: e.pageY});
+        
+        const playerId = e.target.id;
+        const options = {
+            method: 'GET',
+            headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
+          };
+          const url = `http://api.football-data.org/v2/players/${playerId}`;
+          fetch(url, options)
+          .then(response => response.json())
+          .then(data => {
+            this.setState({player: data});
+          });      
     }
 
     render() {
@@ -51,7 +75,7 @@ class GetTeamInfo extends React.Component {
                             {teamInfo.squad.map(player => {
                                 return (
                                     <tr key={player.name}>
-                                        <td>{player.name}</td>
+                                        <td><a id={player.id} onClick={this.handlePlayerClick}>{player.name}</a></td>
                                         <td>{player.shirtNumber}</td>
                                         <td>{player.position}</td>
                                         <td>{player.nationality}</td>
@@ -60,6 +84,7 @@ class GetTeamInfo extends React.Component {
                             })}
                         </tbody>
                     </table>
+                    <GetPlayer player={this.state.player} x={this.state.tooltipX} y={this.state.tooltipY}></GetPlayer>
                 </section>
             );
         }
