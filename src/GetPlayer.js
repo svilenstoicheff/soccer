@@ -7,11 +7,9 @@ class GetPlayer extends React.Component {
     }
 
     showTooltip(player) {
-
         const tooltipStyle = {
-            backgroundColor: '#ffffff',
-            border: '1px solid black',
-            borderRadius: '3px',
+            backgroundColor: 'lightblue',
+            borderRadius: '10px',
             minWidth: '150px', 
             minHeight: '50px', 
             position: 'absolute',
@@ -25,7 +23,7 @@ class GetPlayer extends React.Component {
             height: 0,
             borderTop: '10px solid transparent',
             borderBottom: '10px solid transparent',
-            borderRight: '10px solid white',
+            borderRight: '10px solid lightblue',
             position: 'absolute',
             top: '40px',
             left: '-10px',
@@ -33,7 +31,7 @@ class GetPlayer extends React.Component {
 
         //const player = this.props.player;
         return (
-            <div style={tooltipStyle}>
+            <div className='tooltip' style={tooltipStyle}>
                 <p>{player.name}</p>
                 <p>{player.position}, #{player.shirtNumber}</p>
                 <p>Born: {new Date(player.dateOfBirth).toLocaleDateString()}, {player.countryOfBirth}</p>
