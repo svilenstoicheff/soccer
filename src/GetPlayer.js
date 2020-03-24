@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactModal from 'react-modal';
 
 class GetPlayer extends React.Component {
     constructor(props) {
