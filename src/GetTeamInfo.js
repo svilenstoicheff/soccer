@@ -6,7 +6,7 @@ class GetTeamInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teamId: this.props.teamId,
+            teamId: props.teamId,
             teamInfo: this.props.teamInfo,
             player: null,
             tooltipX: null,
@@ -21,6 +21,7 @@ class GetTeamInfo extends React.Component {
         this.props.that.setState({
             teamId: null, 
             teamInfo: null,
+            player: null,
         });
     }
     
@@ -28,13 +29,17 @@ class GetTeamInfo extends React.Component {
         this.props.that.setState({
             teamId: null, 
             teamInfo: null,
+            player: null, 
         });
     }
 
     handlePlayerClick(e) {
         e.preventDefault();
         e.stopPropagation();
-        this.setState({tooltipX: e.pageX, tooltipY: e.pageY});
+        this.setState({
+            tooltipX: e.pageX, 
+            tooltipY: e.pageY,
+        });
         
         const playerId = e.target.id;
         const options = {
@@ -51,9 +56,10 @@ class GetTeamInfo extends React.Component {
 
     render() {
         const teamInfo = this.props.teamInfo;
-        console.log('teamInfo', this.props.teamInfo);
+        //console.log('teamInfo', this.props.teamInfo);
         const thisYear = new Date().getFullYear();
         const tableId = 'team' + this.props.teamId;
+
         if (teamInfo) {
             return (
                 <section className={this.props.className}>
@@ -75,7 +81,7 @@ class GetTeamInfo extends React.Component {
                             {teamInfo.squad.map(player => {
                                 return (
                                     <tr key={player.name}>
-                                        <td><a id={player.id} onClick={this.handlePlayerClick}>{player.name}</a></td>
+                                        <td><a className='player' id={player.id} onClick={this.handlePlayerClick}>{player.name}</a></td>
                                         <td>{player.shirtNumber}</td>
                                         <td>{player.position}</td>
                                         <td>{player.nationality}</td>
@@ -84,7 +90,7 @@ class GetTeamInfo extends React.Component {
                             })}
                         </tbody>
                     </table>
-                    <GetPlayer player={this.state.player} x={this.state.tooltipX} y={this.state.tooltipY}></GetPlayer>
+                    <GetPlayer player={this.state.player} x={this.state.tooltipX} y={this.state.tooltipY} isOpen={true}></GetPlayer>
                 </section>
             );
         }

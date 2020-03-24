@@ -35,6 +35,15 @@ nav ul {list-style: none;}
 
 th, td {padding: .2em .4em;}
 
+.player:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.open {display:block;}
+.closed {display: none;}
+.open.closed {display: block;}
+
 @media screen and (max-width: 700px) {
   .standings-grid {
     grid-template-columns:  1fr;
