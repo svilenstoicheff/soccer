@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactModal from 'react-modal';
 import GetPlayer from './GetPlayer';
 
 class GetTeamInfo extends React.Component {
