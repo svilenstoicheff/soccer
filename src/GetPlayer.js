@@ -3,18 +3,13 @@ import React from 'react';
 class GetPlayer extends React.Component {
     constructor(props) {
         super(props);
-
-        console.log('constructor',props);
         this.state = {
             isOpen: props.isOpen, 
         };
     }
 
     showTooltip(player) {
-        console.log('inside showTooltip');
-        let tooltipDisplay = 'block' ? this.state.isOpen : 'none';
         const tooltipStyle = {
-            display: tooltipDisplay,
             backgroundColor: 'lightblue',
             borderRadius: '10px',
             minWidth: '150px', 
@@ -45,10 +40,12 @@ class GetPlayer extends React.Component {
             width: '1.2em',
             textAlign: 'center',
             cursor: 'pointer',
+            fontWeight: 700,
+            lineHeight: '125%'
         };  
 
         return (
-            <div className='tooltip' style={tooltipStyle}>
+            <div className='tooltip closed' style={tooltipStyle}>
                 <p>{player.name}</p>
                 <p>{player.position}, #{player.shirtNumber}</p>
                 <p>Born: {new Date(player.dateOfBirth).toLocaleDateString()}, {player.countryOfBirth}</p>
@@ -61,20 +58,18 @@ class GetPlayer extends React.Component {
         let tooltip = document.querySelector('.tooltip');
         if(tooltip) tooltip.classList.add('open');
         let tooltipOpen = tooltip && tooltip.classList.contains('open');
-        if(tooltipOpen) {
+        if(tooltip && tooltipOpen) {
             window.addEventListener('click', () => {
-                document.querySelector('.tooltip').classList.add('closed');
-                document.querySelector('.tooltip').classList.remove('open')}, {once: true});
+                tooltip.classList.add('closed');
+                tooltip.classList.remove('open')}, {once: true});
             
             document.querySelector('main').addEventListener('scroll', (e) => {
-                console.log(window.scrollY);
-                document.querySelector('.tooltip').classList.add('closed');
-                document.querySelector('.tooltip').classList.remove('open');
+                tooltip.classList.add('closed');
+                tooltip.classList.remove('open');
             }, {once: true});
                 
         } else if (tooltip) {
-            console.log('inside else if tooltip');
-            document.querySelector('.tooltip').classList.remove('closed');
+            tooltip.classList.remove('closed');
         }
     }
 

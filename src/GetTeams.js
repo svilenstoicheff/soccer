@@ -42,12 +42,10 @@ class GetTeams extends React.Component {
     }
   
     render() {
-      console.log('render GetTeams');
       if (this.props.teams && this.props.teams.standings.length > 0) {
         const teamStandings = this.props.teams.standings[0].table;
         const competition = this.props.teams.competition;
   
-        console.log('this.props.teams in GetTeams', this.props.teams);
         if (!teamStandings) {
           this.setState({ nodataClass: '' });
           return (<div className={this.state.nodataClass}>No data</div>);

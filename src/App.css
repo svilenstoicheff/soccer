@@ -17,8 +17,13 @@ nav {
 
 nav a {
   color: #fff;
-  line-height: 200%;
+  line-height: 220%;
   font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 .standings-grid {

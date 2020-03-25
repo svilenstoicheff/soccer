@@ -34,8 +34,6 @@ class GetLeagues extends React.Component {
     handleClick(e) {
       const competitionId = e.target.getAttribute('id');
       this.setState({teams: null});
-      console.log(e.target.getAttribute('id'));
-      console.log('this', this);
       const options = {
         method: 'GET',
         headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
@@ -63,7 +61,6 @@ class GetLeagues extends React.Component {
               )
               )}
             </ul>
-            {console.log('before calling GetTeams', this.state.teams)}
           </nav>
           <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled}  />
         </section>

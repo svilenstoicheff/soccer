@@ -55,7 +55,6 @@ class GetTeamInfo extends React.Component {
 
     render() {
         const teamInfo = this.props.teamInfo;
-        //console.log('teamInfo', this.props.teamInfo);
         const thisYear = new Date().getFullYear();
         const tableId = 'team' + this.props.teamId;
 
