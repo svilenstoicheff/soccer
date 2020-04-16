@@ -48,6 +48,18 @@ th, td {padding: .2em .4em;}
 .open {display:block;}
 .closed {display: none;}
 .open.closed {display: block;}
+.loader {display: none;}
+.loading .loader {
+  display: block;
+  position: absolute;
+  width: 15em;
+  height: 7em;
+  top: 2em;
+  left: 0;
+  z-index: 99;
+  background-color: lightblue;
+  text-align: center;
+}
 
 @media screen and (max-width: 700px) {
   .standings-grid {

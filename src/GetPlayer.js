@@ -12,8 +12,8 @@ class GetPlayer extends React.Component {
         const tooltipStyle = {
             backgroundColor: 'lightblue',
             borderRadius: '10px',
-            minWidth: '150px', 
-            minHeight: '50px', 
+            width: '15em', 
+            height: '9em', 
             position: 'absolute',
             top: this.props.y - 50, 
             left: this.props.x + 50,
@@ -51,6 +51,7 @@ class GetPlayer extends React.Component {
                 <p>Born: {new Date(player.dateOfBirth).toLocaleDateString()}, {player.countryOfBirth}</p>
                 <div style={arrowLeft}></div>
                 <div style={closeX}>x</div>
+                <div class="loader">Loading ...</div>
             </div>);
     }
 
