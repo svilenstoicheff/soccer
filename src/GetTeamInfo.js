@@ -39,6 +39,10 @@ class GetTeamInfo extends React.Component {
             tooltipX: e.pageX, 
             tooltipY: e.pageY,
         });
+        let tooltip = document.querySelector('.tooltip');
+        if (tooltip) {
+            tooltip.classList.add('loading');
+        }
         
         const playerId = e.target.id;
         const options = {
@@ -50,6 +54,9 @@ class GetTeamInfo extends React.Component {
           .then(response => response.json())
           .then(data => {
             this.setState({player: data});
+            if (tooltip) {
+                tooltip.classList.remove('loading');
+            }
           });      
     }
 
