@@ -51,7 +51,7 @@ class GetPlayer extends React.Component {
                 <p>Born: {new Date(player.dateOfBirth).toLocaleDateString()}, {player.countryOfBirth}</p>
                 <div style={arrowLeft}></div>
                 <div style={closeX}>x</div>
-                <div class="loader">Loading ...</div>
+                <div className="loader"><div className="loader-circle"><div></div></div></div>
             </div>);
     }
 

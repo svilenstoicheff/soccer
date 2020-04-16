@@ -49,16 +49,47 @@ th, td {padding: .2em .4em;}
 .closed {display: none;}
 .open.closed {display: block;}
 .loader {display: none;}
+
 .loading .loader {
   display: block;
   position: absolute;
-  width: 15em;
-  height: 7em;
+  width: 17em;
+  height: 8em;
   top: 2em;
   left: 0;
   z-index: 99;
   background-color: lightblue;
   text-align: center;
+}
+
+.lds-circle {
+  display: inline-block;
+  transform: translateZ(1px);
+}
+
+.loader-circle > div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: #6eacbf;
+  animation: loader-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes loader-circle {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
+  }
 }
 
 @media screen and (max-width: 700px) {
