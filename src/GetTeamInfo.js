@@ -68,7 +68,7 @@ class GetTeamInfo extends React.Component {
         if (teamInfo) {
             return (
                 <section className={this.props.className}>
-                    <a href="#" onClick={this.handleBack}>Back to standings</a>
+                    <a href="/" onClick={this.handleBack}>Back to standings</a>
                     <h2>{teamInfo.shortName}</h2>
                     <table id={tableId}>
                         <thead>
@@ -86,7 +86,7 @@ class GetTeamInfo extends React.Component {
                             {teamInfo.squad.map(player => {
                                 return (
                                     <tr key={player.name}>
-                                        <td><a className='player' id={player.id} onClick={this.handlePlayerClick}>{player.name}</a></td>
+                                        <td><span className='player' id={player.id} onClick={this.handlePlayerClick}>{player.name}</span></td>
                                         <td>{player.shirtNumber}</td>
                                         <td>{player.position}</td>
                                         <td>{player.nationality}</td>
