@@ -32,6 +32,7 @@ class GetLeagues extends React.Component {
     }
   
     handleClick(e) {
+      e.preventDefault();
       const competitionId = e.target.getAttribute('id');
       this.setState({teams: null});
       const options = {
@@ -54,7 +55,7 @@ class GetLeagues extends React.Component {
             <ul>
               {items.map(item => (
                 <li key={item.id}>
-                  <a href="#" id={item.id} onClick={this.handleClick}>
+                  <a href="/" id={item.id} onClick={this.handleClick}>
                     {item.area.name} - {item.name}
                   </a>
                 </li>

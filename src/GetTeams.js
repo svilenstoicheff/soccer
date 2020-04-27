@@ -71,7 +71,7 @@ class GetTeams extends React.Component {
               <tbody>
                 {teamStandings.map((team) => {
                   return (<tr key={team.position}><td>{team.position}</td>
-                    <td><a href="#" onClick={this.handleTeamClick} teamid={team.team.id}>{team.team.name}</a></td>
+                    <td><a href="/" onClick={this.handleTeamClick} teamid={team.team.id}>{team.team.name}</a></td>
                     <td>{team.points}</td>
                     <td>{team.playedGames}</td>
                     <td>{team.won}</td>
