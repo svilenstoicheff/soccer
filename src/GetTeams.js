@@ -12,11 +12,8 @@ class GetTeams extends React.Component {
       this.handleTeamClick = this.handleTeamClick.bind(this);
     }
   
-    componentWillMount() {
-      this.setState({teamId: null, teamInfo: null});
-    }
-  
     componentDidMount() {
+      this.setState({teamId: null, teamInfo: null});
       if (this.props.called && (!this.props.teams || !this.props.teams.standings.length > 0)) {
         this.setState({ nodataClass: '', teamInfo: null });
       }
