@@ -3,16 +3,16 @@ html, body {
 }
 #root, main, section {height: 100%}
 
-#root, main {
+#root {
   overflow-y: scroll;
 }
 
 
-main {background-color: #eee;}
+/* main {background-color: #eee;} */
 
 nav {
   height:100%;
-  background-color: #999;; 
+  background-color: #999; 
 }
 
 nav a {

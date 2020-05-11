@@ -16,7 +16,7 @@ class GetTeamInfo extends React.Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.that.setState({
             teamId: null, 
             teamInfo: null,
@@ -25,6 +25,7 @@ class GetTeamInfo extends React.Component {
     }
     
     handleBack(e) {
+        e.preventDefault();
         this.props.that.setState({
             teamId: null, 
             teamInfo: null,
@@ -85,7 +86,7 @@ class GetTeamInfo extends React.Component {
 
                             {teamInfo.squad.map(player => {
                                 return (
-                                    <tr key={player.name}>
+                                    <tr key={player.id}>
                                         <td><span className='player' id={player.id} onClick={this.handlePlayerClick}>{player.name}</span></td>
                                         <td>{player.shirtNumber}</td>
                                         <td>{player.position}</td>
