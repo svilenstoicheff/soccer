@@ -10,22 +10,26 @@ class GetPlayer extends React.Component {
 
     showTooltip(player) {
         const tooltipStyle = {
-            backgroundColor: 'lightblue',
-            borderRadius: '10px',
-            width: '15em', 
-            height: '9em', 
+            backgroundColor: 'rgb(153, 153, 153)',
+            borderRadius: '10px', 
+            width: '15em',
+            height: '9em',
             position: 'absolute',
-            top: this.props.y - 50, 
+            top: this.props.y - 50,
             left: this.props.x + 50,
-            padding: '1em'
-        };
+            padding: '1em',
+            border: '1px solid rgb(102, 102, 102)',
+            opacity: '0.9',
+            color: 'rgb(255, 255, 255)',
+            fontWeight: '700',
+        }
 
         const arrowLeft = {
             width: 0,
             height: 0,
             borderTop: '10px solid transparent',
             borderBottom: '10px solid transparent',
-            borderRight: '10px solid lightblue',
+            borderRight: '10px solid rgba(153, 153, 153, .9)',
             position: 'absolute',
             top: '40px',
             left: '-10px',
@@ -34,7 +38,7 @@ class GetPlayer extends React.Component {
         const closeX = {
             top: '5px',
             right: '5px',
-            border: '1px solid black',
+            border: '2px solid #fff',
             borderRadius: '1em', 
             position: 'absolute',
             width: '1.2em',
