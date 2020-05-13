@@ -7,14 +7,6 @@ html, body {
   overflow-y: scroll;
 }
 
-
-/* main {background-color: #eee;} */
-
-nav {
-  height:100%;
-  background-color: #999; 
-}
-
 nav a {
   color: #fff;
   line-height: 220%;
@@ -58,7 +50,7 @@ th, td {padding: .2em .4em;}
   top: 2em;
   left: 0;
   z-index: 99;
-  background-color: lightblue;
+  background-color: #999;
   text-align: center;
 }
 
@@ -73,7 +65,7 @@ th, td {padding: .2em .4em;}
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  background: #6eacbf;
+  background: #666;
   animation: loader-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 @keyframes loader-circle {

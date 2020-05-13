@@ -1,5 +1,6 @@
 import React from 'react';
 import GetTeams from './GetTeams'; 
+import styled from 'styled-components';
 
 class GetLeagues extends React.Component {
     constructor(props) {
@@ -47,11 +48,16 @@ class GetLeagues extends React.Component {
         });
     }
   
+    
     render() {
+      const WrapperNav = styled.nav `
+      height: 100%;
+      background: linear-gradient(225deg, #999, #333);
+    `;
       const items = this.state.items;
       return (
         <section className="standings-grid">
-          <nav>
+          <WrapperNav>
             <ul>
               {items.map(item => (
                 <li key={item.id}>
@@ -62,7 +68,7 @@ class GetLeagues extends React.Component {
               )
               )}
             </ul>
-          </nav>
+          </WrapperNav>
           <GetTeams teams={this.state.teams} called={this.state.teamsComponentCalled}  />
         </section>
       )
