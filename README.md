@@ -1,4 +1,4 @@
-#Soccer Rankings, Team and Player Info
+# Soccer Rankings, Team and Player Info
 
 The code is deployed here: http://worldsoccer.herokuapp.com/
 
