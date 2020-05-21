@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Soccer Rankings, Team and Player Info
+
+The code is deployed here: http://worldsoccer.herokuapp.com/
+
+This is a project built as a SPA in React, to display current rankings for some of the most popular national leagues in the world, with team and player info. The data is coming from http://api.football-data.org, maintained by a software architect in Germany. 
 
 ## Available Scripts
 
