@@ -25,7 +25,7 @@ class GetTeams extends React.Component {
         teamId: e.target.getAttribute('teamid'),
       });
       const teamId = e.target.getAttribute('teamid');
-      const url = 'http://api.football-data.org/v2/teams/' + teamId;
+      const url = '//api.football-data.org/v2/teams/' + teamId;
       let options = {
         method: 'GET',
         headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
