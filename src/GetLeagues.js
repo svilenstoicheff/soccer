@@ -20,7 +20,7 @@ class GetLeagues extends React.Component {
         method: 'GET',
         headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
       };
-      const url = 'http://api.football-data.org/v2/competitions?plan=TIER_ONE';
+      const url = '//api.football-data.org/v2/competitions?plan=TIER_ONE';
       fetch(url, options)
         .then(response => response.json())
         .then((data) => {
@@ -40,7 +40,7 @@ class GetLeagues extends React.Component {
         method: 'GET',
         headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
       };
-      const url = `http://api.football-data.org/v2/competitions/${competitionId}/standings`;
+      const url = `//api.football-data.org/v2/competitions/${competitionId}/standings`;
       fetch(url, options)
         .then(response => response.json())
         .then(data => {

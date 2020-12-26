@@ -50,7 +50,7 @@ class GetTeamInfo extends React.Component {
             method: 'GET',
             headers: { "X-Auth-Token": "55e2b001494e4a19b5ea2aa10ada3c7e" },
           };
-          const url = `http://api.football-data.org/v2/players/${playerId}`;
+          const url = `//api.football-data.org/v2/players/${playerId}`;
           fetch(url, options)
           .then(response => response.json())
           .then(data => {
